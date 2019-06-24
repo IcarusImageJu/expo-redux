@@ -1,7 +1,8 @@
 import React, {useEffect, memo} from 'react';
 import {
-    View,
-    Text
+    Text,
+    FlatList,
+    SafeAreaView
 } from 'react-native';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -13,18 +14,28 @@ import { useInjectSaga } from '../../utils/injectSaga';
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectHome from './selectors';
+import {loadList} from './actions';
 
 const key = 'home';
 
-function Home({home}) {
+import Button from '../../components/Button';
+
+function Home({home, handleloadList}) {
     useInjectReducer({ key, reducer });
     useInjectSaga({ key, saga });
 
     return(
-        <View>
-            <Text>Super page</Text>
-            <Text>{home.list.length}</Text>
-        </View>
+        <SafeAreaView>
+            <Text>Fetch julien github repos</Text>
+            <Button onPress={handleloadList} title='Fetch list' />
+            <FlatList
+                keyExtractor={item => item.name}
+                data={home.list}
+                renderItem={({item}) => (
+                    <Text>{item.name}</Text>
+                )}
+            />
+        </SafeAreaView>
     )
 }
 
@@ -34,7 +45,7 @@ const mapStateToProps = createStructuredSelector({
   
 export function mapDispatchToProps(dispatch) {
     return {
-        dispatch,
+        handleloadList: () => dispatch(loadList()),
     };
 }
   

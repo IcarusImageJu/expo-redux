@@ -1,7 +1,7 @@
 import { LOADED_LIST, LOAD_LIST } from './constants';
 
-
 export function loadList() {
+    console.log('ok')
     return{
         type: LOAD_LIST,
     }
