@@ -9,10 +9,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from '../../utils/injectReducer';
-import { useInjectSaga } from '../../utils/injectSaga';
 
 import reducer from './reducer';
-import saga from './saga';
 import makeSelectHome from './selectors';
 import {loadList} from './actions';
 
@@ -22,7 +20,6 @@ import Button from '../../components/Button';
 
 function Home({home, handleloadList}) {
     useInjectReducer({ key, reducer });
-    useInjectSaga({ key, saga });
 
     return(
         <SafeAreaView>
