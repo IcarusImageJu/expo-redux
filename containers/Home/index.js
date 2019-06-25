@@ -23,10 +23,10 @@ function Home({home, handleloadList}) {
 
     return(
         <SafeAreaView>
-            <Text>Fetch julien github repos</Text>
+            <Text>Fetch currency name</Text>
             <Button onPress={handleloadList} title='Fetch list' />
             <FlatList
-                keyExtractor={item => item.name}
+                keyExtractor={(item, index) => index.toString()}
                 data={home.list}
                 renderItem={({item}) => (
                     <Text>{item.name}</Text>

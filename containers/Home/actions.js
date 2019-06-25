@@ -1,14 +1,14 @@
 import { LOADED_LIST, LOAD_LIST } from './constants';
-import request from '../../utils/request';
-
+import { client } from '../../utils/apollo';
+import { getCurrencyName } from './queries';
 
 export function loadList() {
     return async (dispatch) => {
-        const requestURL = `https://api.github.com/users/IcarusImageJu/repos?type=all&sort=updated`;
         try {
             // Call our request helper (see 'utils/request')
-            const repos = await request(requestURL);
-            dispatch(loadedList(repos))
+            const { data } = await client.query(getCurrencyName)
+            console.log(data.rates);
+            dispatch(loadedList(data.rates))
         } catch (err) {
             console.log(err);
         }
