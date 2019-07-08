@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "apollo-boost": "^0.4.3",
+    "apollo-upload-client": "^10.0.1",
     "expo": "^33.0.0",
     "graphql": "^14.4.2",
     "hoist-non-react-statics": "^3.3.0",
