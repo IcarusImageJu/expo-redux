@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "babel-preset-expo": "^5.1.1",
+    "jest-expo": "^33.0.2",
     "redux-devtools": "^3.5.0"
   },
   "private": true
