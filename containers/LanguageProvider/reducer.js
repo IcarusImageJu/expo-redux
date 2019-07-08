@@ -7,10 +7,9 @@
 import produce from 'immer';
 
 import { CHANGE_LOCALE } from './constants';
-import { fallback } from '../../config/i18n';
 
 export const initialState = {
-  locale: fallback
+  locale: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
