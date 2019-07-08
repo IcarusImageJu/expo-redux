@@ -12,15 +12,15 @@ import React, { useState } from 'react';
 import { Asset, AppLoading } from 'expo';
 import { Provider } from 'react-redux';
 
+import { PersistGate } from 'redux-persist/integration/react'
+
 import i18n from './services/i18n';
-
-import App from './containers/App';
-
 import configureStore from './configureStore';
-
 
 const initialState = {};
 const store = configureStore(initialState);
+
+import App from './containers/App';
 
 function Root() {
   const [appReady, setAppReady] = useState(false);
@@ -34,7 +34,6 @@ function Root() {
     }
     
   }
-
   if(!appReady){
     return(
       <AppLoading
@@ -43,9 +42,12 @@ function Root() {
       />
     )
   }
+
   return (
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={store.persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   );
 }

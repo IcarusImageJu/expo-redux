@@ -21,7 +21,6 @@ function* getRepos() {
 function* getCurrencies(){
   try {
     const { data } = yield call(client.query, getCurrencyName);
-    console.log(data);
     yield put(loadedCurrencies(data.rates));
   } catch (error) {
     console.log(error)

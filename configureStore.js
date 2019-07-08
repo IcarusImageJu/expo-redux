@@ -4,6 +4,8 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore } from 'redux-persist';
+
 import createReducer from './reducers';
 
 export default function configureStore(initialState = {}) {
@@ -26,6 +28,7 @@ export default function configureStore(initialState = {}) {
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
+  store.persistor = persistStore(store);
 
   return store;
 }
